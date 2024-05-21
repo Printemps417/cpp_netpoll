@@ -16,17 +16,6 @@ TaskQueue::~TaskQueue() {
     pthread_mutex_destroy(&mutex);
 }
 
-void TaskQueue::addTask(Task task) {
-    pthread_mutex_lock(&mutex);
-    if (taskQ.size() >= queueCapacity) {
-        pthread_mutex_unlock(&mutex);
-        std::cout << "task queue is full" << std::endl;
-        return;
-    }
-    taskQ.push(task);
-    pthread_mutex_unlock(&mutex);
-}
-
 int TaskQueue::taskNumber() {
     pthread_mutex_lock(&mutex);
     int size = taskQ.size();
@@ -44,6 +33,26 @@ Task TaskQueue::takeTask() {
     taskQ.pop();
     pthread_mutex_unlock(&mutex);
     return task;
+}
+void TaskQueue::addTask(Task task) {
+    pthread_mutex_lock(&mutex);
+    if (taskQ.size() >= queueCapacity) {
+        pthread_mutex_unlock(&mutex);
+        std::cout << "task queue is full" << std::endl;
+        return;
+    }
+    taskQ.push(task);
+    pthread_mutex_unlock(&mutex);
+}
+void TaskQueue::addTask(callback f,void *arg) {
+    pthread_mutex_lock(&mutex);
+    if (taskQ.size() >= queueCapacity) {
+        pthread_mutex_unlock(&mutex);
+        std::cout << "task queue is full" << std::endl;
+        return;
+    }
+    taskQ.push(task(f, arg));
+    pthread_mutex_unlock(&mutex);
 }
 void TaskQueue::destroyTaskQueue() {
     pthread_mutex_lock(&mutex);
