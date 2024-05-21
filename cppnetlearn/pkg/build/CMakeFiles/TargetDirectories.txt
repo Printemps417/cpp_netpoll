@@ -1,0 +1,3 @@
+/home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build/CMakeFiles/MyExecutable.dir
+/home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build/CMakeFiles/edit_cache.dir
+/home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build/CMakeFiles/rebuild_cache.dir

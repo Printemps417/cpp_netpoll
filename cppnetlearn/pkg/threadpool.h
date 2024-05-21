@@ -1,11 +1,14 @@
 #ifndef CPPNETLEARN_THREADPOOL_H
 #define CPPNETLEARN_THREADPOOL_H
 #include "TaskQueue.h"
+#include "TaskQueue.cpp"
 #include <pthread.h>
+
+template <typename T>
 class threadpool {
 private:
     // 任务队列
-    TaskQueue *taskQ;
+    TaskQueue<T> *taskQ;
 
     pthread_t managerID;    // 管理者线程ID
     pthread_t *threadIDs;   // 工作的线程ID
@@ -17,6 +20,7 @@ private:
     pthread_mutex_t mutexPool;  // 锁整个的线程池
     pthread_cond_t notFull;     // 任务队列是不是满了
     pthread_cond_t notEmpty;    // 任务队列是不是空了
+    static const int NUMBER=2;
 
     int shutdown;           // 是不是要销毁线程池, 销毁为1, 不销毁为
     // 工作的线程(消费者线程)任务函数
@@ -32,8 +36,7 @@ public:
     ~threadpool();
 
     // 给线程池添加任务
-    addTask(callback func, void* arg);
-    addTask(Task task);
+    void addTask(Task<T> task);
 
     // 获取线程池中工作的线程的个数
     int getBusyNum();
