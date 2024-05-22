@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 添加一个可执行文件
-add_executable(testExecutable test.cpp threadpool.cpp TaskQueue.cpp)
-
+add_executable(testExecutable test.cpp ../pkg/threadpool.cpp ../pkg/TaskQueue.cpp)
+#add_executable(testExecutable test.cpp ../pkg2/threadpool.cpp ../pkg2/TaskQueue.cpp)
 # 包含头文件目录
-target_include_directories(testExecutable PRIVATE ${PROJECT_SOURCE_DIR})
+target_include_directories(testExecutable PRIVATE ..)

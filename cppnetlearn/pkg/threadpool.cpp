@@ -44,13 +44,12 @@ threadpool<T>::threadpool(int min, int max)
         shutdown = 0;
 
         // 创建线程
-        pthread_create(&managerID, NULL, manager, this);
         for (int i = 0; i < min; ++i)
         {
             pthread_create(&threadIDs[i], NULL, worker, this);
         }
-        return;
-    } while (1);
+        pthread_create(&managerID, NULL, manager, this);
+    } while (0);
 
     // 释放资源
     if (threadIDs) delete[] threadIDs;
@@ -133,7 +132,6 @@ void* threadpool<T>::worker(void* arg)
                     pool->liveNum--;
                     pthread_mutex_unlock(&pool->mutexPool);
                     pool->threadExit();
-                    break;
                 }
             }
         }
@@ -143,7 +141,6 @@ void* threadpool<T>::worker(void* arg)
         {
             pthread_mutex_unlock(&pool->mutexPool);
             pool->threadExit();
-            break;
         }
 
         // 从任务队列中取出一个任务
@@ -171,7 +168,7 @@ void* threadpool<T>::manager(void* arg)
     while (!pool->shutdown)
     {
         // 每隔3s检测一次
-        sleep(1);
+        sleep(3);
 
         // 取出线程池中任务的数量和当前线程的数量
         pthread_mutex_lock(&pool->mutexPool);

@@ -6,7 +6,6 @@
 #include <pthread.h>
 #include "pkg/threadpool.h"
 #include "pkg/threadpool.cpp"
-
 class sockinfo{
 public:
     int fd;
