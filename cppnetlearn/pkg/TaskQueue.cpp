@@ -8,18 +8,17 @@ template <typename T>
 Task<T>::Task() : func(nullptr), arg(nullptr) {};
 template <typename T>
 Task<T>::Task(callback func, T* arg) : func(func), arg(arg) {};
+
 template <typename T>
-TaskQueue<T>::TaskQueue() : queueCapacity(100){
+TaskQueue<T>::TaskQueue(){
     pthread_mutex_init(&mutex, nullptr);
 }
-template <typename T>
-TaskQueue<T>::TaskQueue(int queueCapacity) : queueCapacity(queueCapacity) {
-    pthread_mutex_init(&mutex, nullptr);
-}
+
 template <typename T>
 TaskQueue<T>::~TaskQueue() {
     pthread_mutex_destroy(&mutex);
 }
+
 template <typename T>
 size_t TaskQueue<T>::taskNumber() {
     pthread_mutex_lock(&mutex);
@@ -43,11 +42,6 @@ Task<T> TaskQueue<T>::takeTask() {
 template <typename T>
 void TaskQueue<T>::addTask(Task<T> task) {
     pthread_mutex_lock(&mutex);
-    if (taskQ.size() >= queueCapacity) {
-        pthread_mutex_unlock(&mutex);
-        std::cout << "task queue is full" << std::endl;
-        return;
-    }
     taskQ.push(task);
     pthread_mutex_unlock(&mutex);
 }

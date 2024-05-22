@@ -9,23 +9,21 @@
 using  callback= void(*)(void* arg);
 // 任务结构体
 template <typename T>
-class Task
-{
+class Task{
 public:
     callback func;
     T* arg;
     Task<T>();
     Task<T>(callback func, T* arg);
 };
+
 template <typename T>
 class TaskQueue{
 private:
     pthread_mutex_t mutex;
     std::queue<Task<T>> taskQ;
-    int queueCapacity;  // 容量
 public:
     TaskQueue();
-    TaskQueue(int queueCapacity);
     ~TaskQueue();
     // 添加任务
     void addTask(Task<T> task);
@@ -35,7 +33,6 @@ public:
     size_t taskNumber();
     // 销毁任务队列
     void destroyTaskQueue();
-    int getQueueCapacity() { return queueCapacity; }
 };
 
 

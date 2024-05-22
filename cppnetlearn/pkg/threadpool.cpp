@@ -10,12 +10,12 @@
 using namespace std;
 
 template <typename T>
-threadpool<T>::threadpool(int min, int max, int queueSize)
+threadpool<T>::threadpool(int min, int max)
 {
     do
     {
         // 创建任务队列
-        taskQ = new TaskQueue<T>(queueSize);
+        taskQ = new TaskQueue<T>();
         if (taskQ == nullptr)
         {
             cout << "malloc taskQ fail..." << endl;
@@ -35,8 +35,7 @@ threadpool<T>::threadpool(int min, int max, int queueSize)
         exitNum = 0;
 
         if (pthread_mutex_init(&mutexPool, NULL) != 0 ||
-            pthread_cond_init(&notEmpty, NULL) != 0 ||
-            pthread_cond_init(&notFull, NULL) != 0)
+            pthread_cond_init(&notEmpty, NULL) != 0)
         {
             cout<<"mutex or condition init fail..."<<endl;
             break;
@@ -51,7 +50,7 @@ threadpool<T>::threadpool(int min, int max, int queueSize)
             pthread_create(&threadIDs[i], NULL, worker, this);
         }
         return;
-    } while (0);
+    } while (1);
 
     // 释放资源
     if (threadIDs) delete[] threadIDs;
@@ -81,17 +80,11 @@ threadpool<T>::~threadpool()
 
     pthread_mutex_destroy(&mutexPool);
     pthread_cond_destroy(&notEmpty);
-    pthread_cond_destroy(&notFull);
 }
 
 template <typename T>
 void threadpool<T>::addTask(Task<T> task)
 {
-    while (taskQ->taskNumber() >= taskQ->getQueueCapacity() && !shutdown)
-    {
-        // 阻塞生产者线程
-        pthread_cond_wait(&notFull, &mutexPool);
-    }
     if (shutdown)
     {
         return;
@@ -158,7 +151,6 @@ void* threadpool<T>::worker(void* arg)
 
         pool->busyNum++;
         // 解锁
-        pthread_cond_signal(&pool->notFull);
         pthread_mutex_unlock(&pool->mutexPool);
 
         cout << "thread " << pthread_self() << " start working..." << endl;
@@ -179,7 +171,7 @@ void* threadpool<T>::manager(void* arg)
     while (!pool->shutdown)
     {
         // 每隔3s检测一次
-        sleep(3);
+        sleep(1);
 
         // 取出线程池中任务的数量和当前线程的数量
         pthread_mutex_lock(&pool->mutexPool);
@@ -191,7 +183,7 @@ void* threadpool<T>::manager(void* arg)
 
         // 添加线程
         // 任务的个数>存活的线程个数 && 存活的线程数<最大线程数
-        if (queueSize > liveNum && liveNum < pool->maxNum)
+        if (queueSize > liveNum-busyNum && liveNum < pool->maxNum)
         {
             pthread_mutex_lock(&pool->mutexPool);
             int counter = 0;

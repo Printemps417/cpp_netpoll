@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ParallServer.dir/parallserver.cpp.o CMakeFiles/ParallServer.dir/pkg/threadpool.cpp.o -o ParallServer 

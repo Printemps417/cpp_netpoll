@@ -18,7 +18,6 @@ private:
     int liveNum;            // 存活的线程的个数
     int exitNum;            // 要销毁的线程个数
     pthread_mutex_t mutexPool;  // 锁整个的线程池
-    pthread_cond_t notFull;     // 任务队列是不是满了
     pthread_cond_t notEmpty;    // 任务队列是不是空了
     static const int NUMBER=2;
 
@@ -31,7 +30,7 @@ private:
     void threadExit();
 public:
     // 创建线程池并初始化
-    threadpool(int min, int max, int queueSize);
+    threadpool(int min, int max);
     // 销毁线程池
     ~threadpool();
 

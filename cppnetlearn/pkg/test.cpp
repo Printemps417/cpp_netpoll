@@ -16,7 +16,7 @@ void taskFunc(void* arg)
 int main()
 {
     // 创建线程池
-    threadpool<int> pool(3, 10, 100);
+    threadpool<int> pool(3, 10);
     for (int i = 0; i < 10; ++i)
     {
         int* num = new int(i+100);

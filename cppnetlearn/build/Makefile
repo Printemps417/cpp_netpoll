@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/runoob/repo/cpp_netpoll/cppnetlearn/pkg
+CMAKE_SOURCE_DIR = /home/runoob/repo/cpp_netpoll/cppnetlearn
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build
+CMAKE_BINARY_DIR = /home/runoob/repo/cpp_netpoll/cppnetlearn/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build/CMakeFiles /home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runoob/repo/cpp_netpoll/cppnetlearn/build/CMakeFiles /home/runoob/repo/cpp_netpoll/cppnetlearn/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/runoob/repo/cpp_netpoll/cppnetlearn/pkg/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/runoob/repo/cpp_netpoll/cppnetlearn/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,89 +117,65 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named testExecutable
+# Target rules for targets named ParallServer
 
 # Build rule for target.
-testExecutable: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testExecutable
-.PHONY : testExecutable
+ParallServer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ParallServer
+.PHONY : ParallServer
 
 # fast build rule for target.
-testExecutable/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/build
-.PHONY : testExecutable/fast
+ParallServer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/build
+.PHONY : ParallServer/fast
 
-TaskQueue.o: TaskQueue.cpp.o
-.PHONY : TaskQueue.o
-
-# target to build an object file
-TaskQueue.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/TaskQueue.cpp.o
-.PHONY : TaskQueue.cpp.o
-
-TaskQueue.i: TaskQueue.cpp.i
-.PHONY : TaskQueue.i
-
-# target to preprocess a source file
-TaskQueue.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/TaskQueue.cpp.i
-.PHONY : TaskQueue.cpp.i
-
-TaskQueue.s: TaskQueue.cpp.s
-.PHONY : TaskQueue.s
-
-# target to generate assembly for a file
-TaskQueue.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/TaskQueue.cpp.s
-.PHONY : TaskQueue.cpp.s
-
-test.o: test.cpp.o
-.PHONY : test.o
+parallserver.o: parallserver.cpp.o
+.PHONY : parallserver.o
 
 # target to build an object file
-test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/test.cpp.o
-.PHONY : test.cpp.o
+parallserver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/parallserver.cpp.o
+.PHONY : parallserver.cpp.o
 
-test.i: test.cpp.i
-.PHONY : test.i
+parallserver.i: parallserver.cpp.i
+.PHONY : parallserver.i
 
 # target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/test.cpp.i
-.PHONY : test.cpp.i
+parallserver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/parallserver.cpp.i
+.PHONY : parallserver.cpp.i
 
-test.s: test.cpp.s
-.PHONY : test.s
+parallserver.s: parallserver.cpp.s
+.PHONY : parallserver.s
 
 # target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/test.cpp.s
-.PHONY : test.cpp.s
+parallserver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/parallserver.cpp.s
+.PHONY : parallserver.cpp.s
 
-threadpool.o: threadpool.cpp.o
-.PHONY : threadpool.o
+pkg/threadpool.o: pkg/threadpool.cpp.o
+.PHONY : pkg/threadpool.o
 
 # target to build an object file
-threadpool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/threadpool.cpp.o
-.PHONY : threadpool.cpp.o
+pkg/threadpool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/pkg/threadpool.cpp.o
+.PHONY : pkg/threadpool.cpp.o
 
-threadpool.i: threadpool.cpp.i
-.PHONY : threadpool.i
+pkg/threadpool.i: pkg/threadpool.cpp.i
+.PHONY : pkg/threadpool.i
 
 # target to preprocess a source file
-threadpool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/threadpool.cpp.i
-.PHONY : threadpool.cpp.i
+pkg/threadpool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/pkg/threadpool.cpp.i
+.PHONY : pkg/threadpool.cpp.i
 
-threadpool.s: threadpool.cpp.s
-.PHONY : threadpool.s
+pkg/threadpool.s: pkg/threadpool.cpp.s
+.PHONY : pkg/threadpool.s
 
 # target to generate assembly for a file
-threadpool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testExecutable.dir/build.make CMakeFiles/testExecutable.dir/threadpool.cpp.s
-.PHONY : threadpool.cpp.s
+pkg/threadpool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParallServer.dir/build.make CMakeFiles/ParallServer.dir/pkg/threadpool.cpp.s
+.PHONY : pkg/threadpool.cpp.s
 
 # Help Target
 help:
@@ -209,16 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... testExecutable"
-	@echo "... TaskQueue.o"
-	@echo "... TaskQueue.i"
-	@echo "... TaskQueue.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
-	@echo "... threadpool.o"
-	@echo "... threadpool.i"
-	@echo "... threadpool.s"
+	@echo "... ParallServer"
+	@echo "... parallserver.o"
+	@echo "... parallserver.i"
+	@echo "... parallserver.s"
+	@echo "... pkg/threadpool.o"
+	@echo "... pkg/threadpool.i"
+	@echo "... pkg/threadpool.s"
 .PHONY : help
 
 

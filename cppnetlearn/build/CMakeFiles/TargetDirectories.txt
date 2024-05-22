@@ -1,0 +1,3 @@
+/home/runoob/repo/cpp_netpoll/cppnetlearn/build/CMakeFiles/ParallServer.dir
+/home/runoob/repo/cpp_netpoll/cppnetlearn/build/CMakeFiles/edit_cache.dir
+/home/runoob/repo/cpp_netpoll/cppnetlearn/build/CMakeFiles/rebuild_cache.dir
